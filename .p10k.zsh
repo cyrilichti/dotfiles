@@ -182,9 +182,7 @@
   #################################[ os_icon: os identifier ]##################################
   # OS identifier color.
   # MATERIAL_OCEAN_COLOR
-  typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=024
-  # Custom icon.
-  # typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=67  # Un bleu plus doux
 
   ################################[ prompt_char: prompt symbol ]################################
   # Green prompt symbol if the last command succeeded.
@@ -208,7 +206,7 @@
   ##################################[ dir: current directory ]##################################
   # Default current directory color.
   # MATERIAL_OCEAN_COLOR
-  typeset -g POWERLEVEL9K_DIR_FOREGROUND=024
+  typeset -g POWERLEVEL9K_DIR_FOREGROUND=67 # MATERIAL_OCEAN_COLOR
   # If directory is too long, shorten some of its segments to the shortest possible unique
   # prefix. The shortened directory can be tab-completed to the original.
   typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
@@ -216,11 +214,11 @@
   typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=
   # Color of the shortened directory segments.
   # MATERIAL_OCEAN_COLOR
-  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=017
+  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=60 # MATERIAL_OCEAN_COLOR
   # Color of the anchor directory segments. Anchor segments are never shortened. The first
   # segment is always an anchor.
   # MATERIAL_OCEAN_COLOR
-  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=055
+  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=73 # MATERIAL_OCEAN_COLOR
   # Display anchor directory segments in bold.
   typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=true
   # Don't shorten directories that contain any of these files. They are anchors.
@@ -371,10 +369,10 @@
     if (( $1 )); then
       # Styling for up-to-date Git status.
       local       meta='%f'     # default foreground
-      local      clean='%178F'   # yellow foreground   # MATERIAL_OCEAN_COLOR
-      local   modified='%208F'  # yellow foreground   # MATERIAL_OCEAN_COLOR
-      local  untracked='%055F'   # purpple foreground # MATERIAL_OCEAN_COLOR
-      local conflicted='%208F'  # red foreground # MATERIAL_OCEAN_COLOR
+      local      clean='%67F'   # bleu material ocean   # MATERIAL_OCEAN_COLOR
+      local   modified='%73F'   # bleu clair material ocean   # MATERIAL_OCEAN_COLOR
+      local  untracked='%61F'   # bleu gris material ocean # MATERIAL_OCEAN_COLOR
+      local conflicted='%203F'  # orange material ocean # MATERIAL_OCEAN_COLOR
     else
       # Styling for incomplete and stale Git status.
       local       meta='%244F'  # grey foreground
@@ -481,7 +479,7 @@
   typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED,CONFLICTED,COMMITS_AHEAD,COMMITS_BEHIND}_MAX_NUM=-1
 
   # Icon color.
-  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_COLOR=024 # MATERIAL_OCEAN_COLOR
+  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_COLOR=67 # MATERIAL_OCEAN_COLOR
   typeset -g POWERLEVEL9K_VCS_LOADING_VISUAL_IDENTIFIER_COLOR=244
   # Custom icon.
   # typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION='⭐'
@@ -1521,7 +1519,7 @@
 
   ####################################[ time: current time ]####################################
   # Current time color.
-  typeset -g POWERLEVEL9K_TIME_FOREGROUND=024 # MATERIAL_OCEAN_COLOR
+  typeset -g POWERLEVEL9K_TIME_FOREGROUND=67 # MATERIAL_OCEAN_COLOR
   # Format for the current time: 09:51:02. See `man 3 strftime`.
   typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
   # If set to true, time will update when you hit enter. This way prompts for the past
