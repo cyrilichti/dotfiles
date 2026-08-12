@@ -139,9 +139,10 @@
   typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
   # Connect left prompt lines with these symbols.
-  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%238F╭─'
-  typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX='%238F├─'
-  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%238F╰─'
+  # GITHUB_PURPLE_COLOR — muted gray (#6a737d → 243)
+  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%243F╭─'
+  typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX='%243F├─'
+  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%243F╰─'
   # Connect right prompt lines with these symbols.
   typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_SUFFIX=
   typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_SUFFIX=
@@ -168,7 +169,8 @@
   typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR='─'
   if [[ $POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR != ' ' ]]; then
     # The color of the filler.
-    typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_FOREGROUND=238
+    # GITHUB_PURPLE_COLOR — white (#E1E4E8 → 254)
+    typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_FOREGROUND=254
     # Add a space between the end of left prompt and the filler.
     typeset -g POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=' '
     # Add a space between the filler and the start of right prompt.
@@ -181,14 +183,16 @@
 
   #################################[ os_icon: os identifier ]##################################
   # OS identifier color.
-  # MATERIAL_OCEAN_COLOR
-  typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=67  # Un bleu plus doux
+  # GITHUB_PURPLE_COLOR — soft purple accent (#b392f0 → 141)
+  typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=141
 
   ################################[ prompt_char: prompt symbol ]################################
-  # Green prompt symbol if the last command succeeded.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=76
-  # Red prompt symbol if the last command failed.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=196
+  # Soft purple accent if the last command succeeded (like setopt in theme).
+  # GITHUB_PURPLE_COLOR — soft purple (#b392f0 → 141)
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=141
+  # Coral prompt symbol if the last command failed (like export in theme).
+  # GITHUB_PURPLE_COLOR — coral (#F97583 → 210)
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=210
   # Default prompt symbol.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='❯'
   # Prompt symbol in command vi mode.
@@ -205,20 +209,20 @@
 
   ##################################[ dir: current directory ]##################################
   # Default current directory color.
-  # MATERIAL_OCEAN_COLOR
-  typeset -g POWERLEVEL9K_DIR_FOREGROUND=67 # MATERIAL_OCEAN_COLOR
+  # GITHUB_PURPLE_COLOR — light blue (#9ECBFF → 153)
+  typeset -g POWERLEVEL9K_DIR_FOREGROUND=153
   # If directory is too long, shorten some of its segments to the shortest possible unique
   # prefix. The shortened directory can be tab-completed to the original.
   typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
   # Replace removed segment suffixes with this symbol.
   typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=
   # Color of the shortened directory segments.
-  # MATERIAL_OCEAN_COLOR
-  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=60 # MATERIAL_OCEAN_COLOR
+  # GITHUB_PURPLE_COLOR — muted gray-blue (#6a737d → 243)
+  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=243
   # Color of the anchor directory segments. Anchor segments are never shortened. The first
   # segment is always an anchor.
-  # MATERIAL_OCEAN_COLOR
-  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=73 # MATERIAL_OCEAN_COLOR
+  # GITHUB_PURPLE_COLOR — sky blue (#79B8FF → 111)
+  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=111
   # Display anchor directory segments in bold.
   typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=true
   # Don't shorten directories that contain any of these files. They are anchors.
@@ -265,7 +269,8 @@
   # directory will be shortened only when prompt doesn't fit or when other parameters demand it
   # (see POWERLEVEL9K_DIR_MIN_COMMAND_COLUMNS and POWERLEVEL9K_DIR_MIN_COMMAND_COLUMNS_PCT below).
   # If set to `0`, directory will always be shortened to its minimum length.
-  typeset -g POWERLEVEL9K_DIR_MAX_LENGTH=80
+  # GITHUB_PURPLE_COLOR — force plus de segments raccourcis
+  typeset -g POWERLEVEL9K_DIR_MAX_LENGTH=45
   # When `dir` segment is on the last prompt line, try to shorten it enough to leave at least this
   # many columns for typing commands.
   typeset -g POWERLEVEL9K_DIR_MIN_COMMAND_COLUMNS=40
@@ -368,11 +373,12 @@
 
     if (( $1 )); then
       # Styling for up-to-date Git status.
-      local       meta='%f'     # default foreground
-      local      clean='%67F'   # bleu material ocean   # MATERIAL_OCEAN_COLOR
-      local   modified='%73F'   # bleu clair material ocean   # MATERIAL_OCEAN_COLOR
-      local  untracked='%61F'   # bleu gris material ocean # MATERIAL_OCEAN_COLOR
-      local conflicted='%203F'  # orange material ocean # MATERIAL_OCEAN_COLOR
+      # GITHUB_PURPLE_COLOR — syntax chart from screen (blue/coral/green + purple accent)
+      local       meta='%243F'  # muted gray
+      local      clean='%141F'  # soft purple accent (#b392f0)
+      local   modified='%215F'  # amber (#FFAB70)
+      local  untracked='%115F'  # green (#85E89D)
+      local conflicted='%210F'  # coral (#F97583)
     else
       # Styling for incomplete and stale Git status.
       local       meta='%244F'  # grey foreground
@@ -479,7 +485,8 @@
   typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED,CONFLICTED,COMMITS_AHEAD,COMMITS_BEHIND}_MAX_NUM=-1
 
   # Icon color.
-  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_COLOR=67 # MATERIAL_OCEAN_COLOR
+  # GITHUB_PURPLE_COLOR — soft purple accent (#b392f0 → 141)
+  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_COLOR=141
   typeset -g POWERLEVEL9K_VCS_LOADING_VISUAL_IDENTIFIER_COLOR=244
   # Custom icon.
   # typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION='⭐'
@@ -493,9 +500,10 @@
 
   # These settings are used for repositories other than Git or when gitstatusd fails and
   # Powerlevel10k has to fall back to using vcs_info.
-  typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND=76
-  typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND=76
-  typeset -g POWERLEVEL9K_VCS_MODIFIED_FOREGROUND=178
+  # GITHUB_PURPLE_COLOR
+  typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND=141
+  typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND=115
+  typeset -g POWERLEVEL9K_VCS_MODIFIED_FOREGROUND=215
 
   ##########################[ status: exit code of the last command ]###########################
   # Enable OK_PIPE, ERROR_PIPE and ERROR_SIGNAL status states to allow us to enable, disable and
@@ -1519,7 +1527,8 @@
 
   ####################################[ time: current time ]####################################
   # Current time color.
-  typeset -g POWERLEVEL9K_TIME_FOREGROUND=67 # MATERIAL_OCEAN_COLOR
+  # GITHUB_PURPLE_COLOR — coral red (#F97583 → 210)
+  typeset -g POWERLEVEL9K_TIME_FOREGROUND=210
   # Format for the current time: 09:51:02. See `man 3 strftime`.
   typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
   # If set to true, time will update when you hit enter. This way prompts for the past
