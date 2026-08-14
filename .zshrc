@@ -43,8 +43,8 @@ compinit
 zstyle ':completion:*' menu select
 setopt auto_menu complete_in_word
 
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # Local secrets
 [[ -f ~/.zsh_secrets ]] && source ~/.zsh_secrets
