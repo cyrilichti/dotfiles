@@ -7,17 +7,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Initialize Homebrew before loading tools installed through it. Integrated
-# terminals do not always inherit the same PATH as Terminal.app.
-if [[ -x /opt/homebrew/bin/brew ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-elif [[ -x /usr/local/bin/brew ]]; then
-  eval "$(/usr/local/bin/brew shellenv)"
-elif [[ -x "$HOME/homebrew/bin/brew" ]]; then
+# Homebrew
+if [[ -x "$HOME/homebrew/bin/brew" ]]; then
   eval "$("$HOME/homebrew/bin/brew" shellenv)"
 fi
 
-source "$(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme"
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -48,8 +43,8 @@ compinit
 zstyle ':completion:*' menu select
 setopt auto_menu complete_in_word
 
-source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Local secrets
 [[ -f ~/.zsh_secrets ]] && source ~/.zsh_secrets
