@@ -1,0 +1,49 @@
+# Write Update Branch
+
+## Purpose
+
+Resolve update-only context, then follow the shared execution.
+
+## Steps
+
+### 1. Collect Item Expression
+
+Reuse an available provider item ID, native URL, or title query from the
+workflow activation context. Otherwise ask for the item title or a short title
+search phrase. Do not continue until this input exists.
+
+### 2. Resolve Provider and Item
+
+Run `../commands/resolve-item-provider.md`.
+
+Then run `../commands/resolve-existing-item.md` with:
+
+```text
+provider: resolved item provider
+reference: user-provided provider item ID or native URL, when available
+query: collected title query, when no direct reference is available
+```
+
+Identify the resolved item to the user using its title, status, and link when
+available.
+
+### 3. Collect Need Description
+
+After identifying the official item, reuse the intention from the workflow
+activation context when it already says what should change and in which
+direction. Otherwise ask only for that missing reformulation context. Keep the
+result as this run's `intention`.
+
+### 4. Follow Shared Execution
+
+Follow `./write-confirm.md` with:
+
+```text
+provider: resolved item provider
+mode: update
+item_id: resolved official item ID
+item_title: resolved official item title
+item_description: resolved official item description
+item_link: official item link, when available
+intention: collected need description
+```

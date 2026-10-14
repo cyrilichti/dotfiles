@@ -1,0 +1,13 @@
+# Copy this file to `agent-workflows.yaml` in a consuming project when workflows need
+# project-specific providers.
+#
+# Item-provider MCP endpoints and CLI authentication are configured outside
+# this file. This file selects the provider for each context.
+
+mcp:
+  item:
+    provider: linear
+
+  # Supported values: github, gitlab
+  version:
+    provider: github
