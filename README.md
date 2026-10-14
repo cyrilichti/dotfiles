@@ -16,9 +16,10 @@ Prerequisites (Homebrew):
 - [zsh-completions](https://github.com/zsh-users/zsh-completions)
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+- [fzf](https://github.com/junegunn/fzf) for interactive branch selection
 
 ```bash
-brew install powerlevel10k zsh-completions zsh-autosuggestions zsh-syntax-highlighting
+brew install powerlevel10k zsh-completions zsh-autosuggestions zsh-syntax-highlighting fzf
 ```
 
 Then reload:
@@ -27,6 +28,9 @@ Then reload:
 source ~/.zshrc
 ```
 
+## Branch selector
+
+In any Zsh terminal, run `branch` inside a Git repository. Search local branches, then press Enter or double-click one to switch. Esc cancels.
 
 
 ## Theme
