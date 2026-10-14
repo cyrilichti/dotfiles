@@ -1,0 +1,49 @@
+# Retrieve Items
+
+Retrieve Linear issues matching the caller's criteria.
+
+## Current User
+
+1. Retrieve issues assigned to the current user:
+
+   ```text
+   tool: list_issues
+   arguments:
+     assignee: me
+     includeArchived: false
+     fields:
+       - id
+       - title
+       - status
+       - statusType
+     limit: 5
+   ```
+
+2. Apply the caller criteria to the returned issues when Linear cannot express
+   them directly.
+
+Return the first `limit` matches without following the cursor. Normalize `id`
+as `provider_id` and the state name as `status`.
+
+Use Linear state names and state types as workspace-specific values. Do not
+assume every workspace uses the same status labels.
+
+## Status Criteria
+
+Use `list_issues` with the caller's resolved `team` and `state`. Do not pass
+`assignee` unless the caller requested it. Never follow the returned cursor.
+
+Use the same fields, plus `team` and `project` only for destination.
+
+## Labeled Candidate Criteria
+
+For a supplied `label` without `status`, call `list_issues` with the exact label
+name, `includeArchived: false`, the requested display fields, and the caller
+limit. Do not filter by status, pass `assignee`, or follow a cursor.
+
+## Open Labeled Candidate Criteria
+
+For `status: open` with a supplied `label`, call `list_issues` with the exact
+label name, `includeArchived: false`, the requested display fields, and the
+caller limit. Exclude issues whose `statusType` is `completed` or `canceled`.
+Also exclude `duplicate`. Do not pass `assignee` and do not follow a cursor.
