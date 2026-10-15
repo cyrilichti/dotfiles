@@ -48,7 +48,7 @@ if (( $+commands[fzf] )); then
   branch() {
     local branch
     branch="$(git for-each-ref --format='%(refname:short)' refs/heads | fzf --height=60% --border --border-label='Local branches' --prompt='Branch > ' --color='border:#555B66,label:#A7BBD9,pointer:#4D81EF,prompt:#8BA9DD,hl:#4D81EF,fg+:#CAD9EF,bg+:#34373E')" || return
-    [[ -n "$branch" ]] && git switch --no-guess -- "$branch"
+    [[ -n "$branch" ]] && git switch --no-guess -- "$branch" && git pull --ff-only
   }
 fi
 

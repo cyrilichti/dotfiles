@@ -97,7 +97,7 @@ Completion helps finish commands and paths, suggestions bring back commands from
 
 ### Branch selector
 
-Run `branch` inside a Git repository to search local branches and switch without typing the full name. Press Enter or double-click to select one; Esc cancels.
+Run `branch` inside a Git repository to search local branches and switch without typing the full name. Press Enter or double-click to select one; Esc cancels. After switching, it runs `git pull --ff-only` to update the selected branch. If the branch has no tracked remote or cannot be fast-forwarded, Git reports the issue without creating a merge commit.
 
 ### History
 
