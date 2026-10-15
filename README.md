@@ -1,90 +1,39 @@
 # Dotfiles
 
-Global dotfiles for macOS (shell config shared across machines).
+A macOS Zsh setup that brings the same shell experience to each machine.
 
-## Install
+## What you get
 
-These instructions use macOS Zsh with Homebrew at `/opt/homebrew` (the default on Apple Silicon). Both `.zprofile` and the Powerlevel10k theme path in `.zshrc` use that prefix. Other Homebrew locations require adjusting those paths first.
+- **A prompt that is easy to read:** Powerlevel10k shows your current directory and Git status, so you can see where you are at a glance. The dark purple theme can be adjusted with `p10k configure`.
+- **Faster command entry:** completions help you finish commands, autosuggestions offer commands from your history, and syntax highlighting makes mistakes easier to spot before you run them.
+- **A branch picker:** run `branch` in a Git repository to search local branches and switch without typing the full name. Press Esc to cancel.
+- **History across terminals:** commands remain available in new Zsh sessions, while duplicate entries are filtered out.
+- **Private, machine-specific values:** keep tokens and other local environment variables in `~/.zsh_secrets`, outside the shared configuration. The repository includes an example with placeholders.
 
-### 1. Install Homebrew and shell dependencies
+## Set up a new Mac
 
-On a new Mac, install the Command Line Tools and wait for the installation to finish:
+This setup expects macOS with Zsh and Homebrew installed at `/opt/homebrew` (the default on Apple Silicon). Install the Command Line Tools with `xcode-select --install`, then install Homebrew using the instructions at [brew.sh](https://brew.sh/).
+
+Install the prompt and shell tools:
 
 ```bash
-xcode-select --install
-```
-
-Install Homebrew using the command from [brew.sh](https://brew.sh/), then initialize it in the current terminal:
-
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
-```
-
-See the [Homebrew installation requirements](https://docs.brew.sh/Installation) for supported macOS versions and installer details.
-
-Install the theme, completion and suggestion plugins, and the interactive branch selector:
-
-```bash
 brew install powerlevel10k zsh-completions zsh-autosuggestions zsh-syntax-highlighting fzf
 ```
 
-### 2. Copy the configuration
-
-Clone the repository and enter its directory:
+Clone the repository and copy the configuration. The `cp` commands replace existing files, so save any configuration you want to keep first.
 
 ```bash
 git clone https://github.com/cyrilichti/dotfiles.git
 cd dotfiles
-```
-
-The following commands replace existing configuration files. Back up any files you want to keep first. Keep an existing `~/.zsh_secrets` and merge the example manually instead of copying over its values.
-
-```bash
+cp .zprofile ~/.zprofile
 cp .zshrc ~/.zshrc
 cp .p10k.zsh ~/.p10k.zsh
-cp .zprofile ~/.zprofile
 cp -n .zsh_secrets.example ~/.zsh_secrets
 chmod 600 ~/.zsh_secrets
-```
-
-[Zsh reads `.zprofile` for login shells before `.zshrc`](https://zsh.sourceforge.io/Doc/Release/Files.html#Startup_002fShutdown-Files). This profile runs Homebrew's `shellenv` to make its commands available. Interactive shells then load `.zshrc` for the prompt, history, completion, plugins, and local secrets. These instructions use Zsh's default configuration directory, your home directory (`ZDOTDIR` unset).
-
-### 3. Configure local secrets
-
-Edit `~/.zsh_secrets` locally. Replace the example placeholders with your own environment variable names and values, and uncomment only the exports you need. You can leave the file unchanged if you do not need secrets.
-
-`.zshrc` sources this file when it exists. Keep populated values in your home directory; the repository's `.zsh_secrets.example` contains commented placeholders only. `.gitignore` also excludes `.zsh_secrets` from accidental staging within the repository.
-
-### 4. Verify shell startup
-
-Check syntax, then start a new interactive login shell so both `.zprofile` and `.zshrc` load:
-
-```bash
-zsh -n ~/.zprofile
-zsh -n ~/.zshrc
-zsh -n ~/.p10k.zsh
-zsh -n ~/.zsh_secrets
 exec zsh -l
 ```
 
-The prompt should appear without missing-file or command-not-found errors. In the new shell, run:
+The profile makes Homebrew available when Zsh starts. If you need local tokens or environment variables, edit `~/.zsh_secrets` and uncomment only the examples you use. Keep any existing secrets file and merge the example by hand if needed.
 
-```zsh
-brew --prefix
-whence -w p10k branch
-```
-
-Expect `/opt/homebrew`, `p10k: function`, and `branch: function`. Do not print secret values to verify loading. If the prompt's icons look wrong, install and select the [font recommended by Powerlevel10k](https://github.com/romkatv/powerlevel10k#fonts) in your terminal settings.
-
-## Branch selector
-
-In any Zsh terminal, run `branch` inside a Git repository. Search local branches, then press Enter or double-click one to switch. Esc cancels.
-
-## Theme
-
-Dark purple Powerlevel10k prompt, aligned with a Github Purple–style editor theme. Run `p10k configure` to customize it.
-
-## History
-
-`.zshrc` configures shared history with no duplicates (`HISTSIZE` / `SAVEHIST`, `sharehistory`, `hist_ignore_*`).
+Your new shell should open without errors. Run `branch` inside a Git repository to try the branch picker. If prompt icons look wrong, select a [Powerlevel10k font](https://github.com/romkatv/powerlevel10k#fonts) in your terminal.
